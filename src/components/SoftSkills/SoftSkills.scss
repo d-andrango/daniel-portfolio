@@ -1,0 +1,33 @@
+@import "../../styles/variables.scss";
+
+.soft-skills {
+  padding: 6rem 0;
+
+  @media (max-width: 768px) {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+  }
+
+  &__item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    text-align: center;
+    color: var(--text-secondary);
+    transition: var(--transition-normal);
+    cursor: default;
+
+    &:hover {
+      background: var(--gradient-primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+  }
+}

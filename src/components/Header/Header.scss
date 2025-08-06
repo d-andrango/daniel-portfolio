@@ -1,0 +1,309 @@
+@import "../../styles/variables.scss";
+
+.header {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 1000;
+  backdrop-filter: var(--blur-effect);
+  -webkit-backdrop-filter: var(--blur-effect);
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-xl);
+  transition: var(--transition-normal);
+  box-shadow: var(--shadow-md);
+  max-width: 1080px;
+  margin: 0 auto;
+
+  &--scrolled {
+    background: rgba(15, 23, 42, 0.636);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--border-secondary);
+  }
+
+  &__content {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl);
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media (min-width: 640px) {
+      padding: 0 var(--spacing-2xl);
+    }
+
+    @media (max-width: 768px) {
+      padding: 0 var(--spacing-lg);
+    }
+  }
+
+  &__logo {
+    font-weight: 700;
+    font-size: 1.25rem;
+
+    background-clip: text;
+    flex-shrink: 0;
+
+    @media (max-width: 768px) {
+      font-size: 1.1rem;
+    }
+  }
+
+  &__nav {
+    &--desktop {
+      display: none;
+      gap: var(--spacing-xl);
+      flex: 1;
+      justify-content: center;
+      margin: 0 var(--spacing-2xl);
+
+      @media (min-width: 769px) {
+        display: flex;
+      }
+
+      @media (min-width: 1024px) {
+        gap: var(--spacing-2xl);
+      }
+    }
+  }
+
+  &__nav-link {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    position: relative;
+    white-space: nowrap;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-primary);
+      border-radius: var(--radius-sm);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateX(-50%);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--gradient-primary);
+      opacity: 0;
+      border-radius: var(--radius-md);
+      transition: var(--transition-normal);
+      z-index: -1;
+    }
+
+    &:hover {
+      color: var(--text-primary);
+      transform: translateY(-1px);
+
+      &::after {
+        opacity: 0.05;
+      }
+
+      &::before {
+        width: 80%;
+      }
+    }
+
+    &--active {
+      color: var(--primary-blue-light);
+      background: rgba(14, 165, 233, 0.1);
+      border: 1px solid rgba(14, 165, 233, 0.2);
+      font-weight: 600;
+      transform: translateY(-1px);
+
+      &::before {
+        width: 100%;
+        background: var(--primary-blue);
+      }
+
+      &::after {
+        opacity: 0.1;
+      }
+
+      &:hover {
+        color: var(--primary-blue);
+        background: rgba(14, 165, 233, 0.15);
+        border-color: rgba(14, 165, 233, 0.3);
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+    flex-shrink: 0;
+
+    @media (max-width: 768px) {
+      gap: var(--spacing-xs);
+    }
+  }
+
+  &__action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-primary);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: xor;
+      -webkit-mask-composite: xor;
+      opacity: 0;
+      transition: var(--transition-normal);
+    }
+
+    &:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    &:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    &--email {
+      &:hover {
+        background: var(--gradient-primary);
+        color: white;
+        box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);
+      }
+    }
+
+    &--whatsapp {
+      &:hover {
+        background: #25D366;
+        color: white;
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+      }
+    }
+
+    &--phone {
+      &:hover {
+        background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        color: white;
+        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+      }
+    }
+
+    @media (max-width: 768px) {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    @media (max-width: 480px) {
+      width: 2.25rem;
+      height: 2.25rem;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}
+
+// Animaciones adicionales para el estado activo
+@keyframes activeGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+  }
+}
+
+.header__nav-link--active {
+  animation: activeGlow 3s ease-in-out infinite;
+}
+
+// Mejoras de accesibilidad
+@media (prefers-reduced-motion: reduce) {
+  .header__nav-link {
+    &::before,
+    &::after {
+      transition: none;
+    }
+  }
+
+  .header__action-btn {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .header__nav-link--active {
+    animation: none;
+  }
+}
+
+// Responsive específico para pantallas muy pequeñas
+@media (max-width: 360px) {
+  .header__content {
+    padding: 0 var(--spacing-md);
+  }
+
+  .header__logo {
+    font-size: 1rem;
+  }
+
+  .header__actions {
+    gap: 4px;
+  }
+
+  .header__action-btn {
+    width: 2rem;
+    height: 2rem;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+}

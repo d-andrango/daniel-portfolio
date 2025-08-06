@@ -1,0 +1,40 @@
+@import "../../styles/variables.scss";
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-lg);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: var(--transition-normal);
+
+  &--default {
+    background: var(--primary-blue);
+    color: white;
+  }
+
+  &--secondary {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-primary);
+  }
+
+  &--outline {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-primary);
+  }
+
+  &--tech {
+    background: rgba(14, 165, 233, 0.1);
+    color: var(--primary-blue-light);
+    border: 1px solid rgba(14, 165, 233, 0.2);
+
+    &:hover {
+      background: var(--primary-blue);
+      color: white;
+      transform: translateY(-1px);
+    }
+  }
+}

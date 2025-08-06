@@ -1,0 +1,42 @@
+@import "../../styles/variables.scss";
+
+.languages {
+  padding: 0rem 0 4rem 0;
+
+  @media (max-width: 768px) {
+    padding: var(--spacing-3xl) 16px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-xl);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  &__card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    text-align: center;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) var(--spacing-md);
+  }
+
+  &__name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  &__level {
+    color: var(--primary-blue);
+    font-weight: 500;
+  }
+}

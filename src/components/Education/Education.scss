@@ -1,0 +1,35 @@
+@import "../../styles/variables.scss";
+
+.education {
+  padding: 6rem 0;
+  text-align: left;
+
+  @media (max-width: 768px) {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  &__grid {
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  &__card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+  }
+
+  &__institution {
+    color: var(--primary-blue);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  &__period {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+}

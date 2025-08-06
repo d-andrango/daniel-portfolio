@@ -1,0 +1,22 @@
+@import "../../styles/variables.scss";
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  &--sm {
+    max-width: var(--container-sm);
+  }
+
+  &--md {
+    max-width: var(--container-md);
+  }
+
+  &--lg {
+    max-width: var(--container-lg);
+  }
+
+  &--xl {
+    max-width: var(--container-xl);
+  }
+
+}
