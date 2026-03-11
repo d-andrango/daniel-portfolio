@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { MailIcon, PhoneIcon } from "../Icons/index"
+import { MailIcon, LinkedinIcon } from "../Icons/index"
 import { FaWhatsapp } from "react-icons/fa"
 import "./Header.scss"
 
@@ -33,16 +33,13 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const handleContactClick = (type: "email" | "whatsapp" | "phone") => {
+  const handleContactClick = (type: "email" | "whatsapp") => {
     switch (type) {
       case "email":
         window.open("mailto:daniel.@d-andrango.com", "_blank")
         break
       case "whatsapp":
         window.open("https://wa.link/oz69j3", "_blank")
-        break
-      case "phone":
-        window.open("tel:+34678143534", "_blank")
         break
     }
   }
@@ -100,14 +97,16 @@ export default function Header() {
           >
             <FaWhatsapp size={18} />
           </button>
-          <button
-            className="header__action-btn header__action-btn--phone"
-            onClick={() => handleContactClick("phone")}
-            aria-label="Llamar por teléfono"
-            title="Llamar"
+          <a
+            href="https://www.linkedin.com/in/d-andrango/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="header__action-btn header__action-btn--linkedin"
+            aria-label="LinkedIn"
+            title="LinkedIn"
           >
-            <PhoneIcon size={18} />
-          </button>
+            <LinkedinIcon size={18} />
+          </a>
         </div>
       </div>
     </header>

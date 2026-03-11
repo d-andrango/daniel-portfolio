@@ -17,7 +17,7 @@ export default function Footer() {
 
           </div>
           <div className="footer__links">
-            <a href="#" className="footer__link" target="blank" aria-label="GitHub">
+            <a href="https://github.com/d-andrango" className="footer__link" target="blank" aria-label="GitHub">
               <GithubIcon size={20} />
             </a>
             <a href="https://www.linkedin.com/in/d-andrango/" target="blank" className="footer__link" aria-label="LinkedIn">
