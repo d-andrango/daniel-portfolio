@@ -9,6 +9,16 @@ export default function Education() {
       <Container>
         <SectionHeader title="Educación" />
         <div className="education__grid">
+           <Card className="education__card" hover>
+            <div className="card__header">
+              <h3>Certificación Cells</h3>
+              <p className="education__institution">BBVA</p>
+              <p className="education__period">2026</p>
+            </div>
+            <div className="card__content-secondary">
+              <p>Certificación en Cells impartida por BBVA</p>
+            </div>
+          </Card>
           <Card className="education__card" hover>
             <div className="card__header">
               <h3>CFGS Desarrollo de Aplicaciones Web</h3>

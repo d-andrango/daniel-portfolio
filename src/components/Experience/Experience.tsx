@@ -9,8 +9,22 @@ import "./Experience.scss"
 const experiences = [
   {
     title: "Desarrollador FrontEnd",
+    company: "SEARCH IT",
+    period: "Feb 2026 - Presente",
+    location: "Madrid, España",
+    description:
+      "Trabajando en un proyecto para Banco BBVA (vía Accenture). Desarrollo de soluciones front de alto rendimiento dentro del ecosistema Cells (BBVA), garantizando la escalabilidad y el cumplimiento de los estándares de arquitectura del banco.",
+    technologies: ["Cells", "JavaScript", "Lit Element","SCSS", "Bitbucket", "Jira",],
+    achievements: [
+      "Desarrollo de Componentes, Páginas e Integración usando Cells y Lit Element: Implementación de flujos y páginas completas mediante la integración de componentes modulares, gestionando estados y comunicación eficiente entre elementos.",
+      "Calidad de Código y Testing Robusto: Mantenimiento de código utilizando Mocha, Chai y Sinon. Implementación de pruebas de integración y unitarias.",
+      "Metodologías Ágiles (Scrum): Participación activa en Sprints, refinamientos y daylies, utilizando Jira y Bitbucket para el seguimiento preciso de tareas y cumplimiento de entregas.",
+    ],
+  },
+  {
+    title: "Desarrollador FrontEnd",
     company: "Fesevar Innovaciones SLU",
-    period: "Feb 2022 - Presente",
+    period: "Feb 2022 - Feb 2026",
     location: "Madrid, España",
     description:
       "Diseño y desarrollo de intranet de empresa con interfaces modulares y seguras. Creación de dashboards interactivos, sistemas de acceso y optimizar la gestión de proyectos mediante despliegues automatizados.",
@@ -38,6 +52,7 @@ const experiences = [
       "Uso de Git y GitLab para control de versiones en un entorno ágil (Scrum/Kanban) con Linear y Jira.",
     ],
   },
+  /*
   {
     title: "Técnico Desarrollador Web",
     company: "Fesevar Innovaciones SLU",
@@ -53,7 +68,7 @@ const experiences = [
       "Aprendí y apliqué metodologías ágiles (Scrum) en proyectos reales",
       "Actualización de branding usando paquete de Adobe, como Photshop e Illustrator.",
     ],
-  },
+  },*/
 ]
 
 export default function Experience() {

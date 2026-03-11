@@ -16,10 +16,7 @@ export default function About() {
             <div className="about__text">
               <div className="about__intro">
                 <p className="about__intro-text">
-                  Desarrollador Frontend con experiencia en React, TypeScript y diseño de interfaces web. Especializado en la creación de
-                  componentes reutilizables, testables y escalables. Experiencia práctica en entornos DevOps, automatización con GitLab CI/CD,
-                  despliegues con Docker y gestión de infraestructura ligera en Linux. Experiencia en entornos ágiles (Scrum/Kanban).
-                </p>
+           Desarrollador Frontend con experiencia en React, Cells, Lit Element, JavaScript, TypeScript y diseño de interfaces web. Especializado en la creación de componentes reutilizables, testables y escalables. También cuento con experiencia práctica en entornos DevOps, automatización con GitLab CI/CD, despliegues con Docker y gestión de infraestructura ligera en Linux. Experiencia en entornos ágiles (Scrum/Kanban).     </p>
               </div>
 
               <div className="about__details">
@@ -50,7 +47,7 @@ export default function About() {
               </div>
               <div className="about__info-content">
                 <h4>Experiencia</h4>
-                <span>3+ años desarrollando</span>
+                <span>4+ años desarrollando</span>
               </div>
             </div>
 

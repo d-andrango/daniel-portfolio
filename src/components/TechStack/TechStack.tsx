@@ -13,6 +13,7 @@ import {
   FaNpm,
   FaFigma,
   FaWordpress,
+  FaBitbucket,
 } from "react-icons/fa"
 import {
   SiTypescript,
@@ -24,6 +25,7 @@ import {
   SiAdobeillustrator,
   SiLit,
   SiMocha,
+  SiJira,
 } from "react-icons/si"
 import { TbFlask } from "react-icons/tb"
 import "./TechStack.scss"
@@ -51,6 +53,8 @@ const techStack = {
     { name: "Figma", icon: FaFigma, color: "#F24E1E" },
     { name: "Photoshop", icon: SiAdobephotoshop, color: "#31A8FF" },
     { name: "Illustrator", icon: SiAdobeillustrator, color: "#FF9A00" },
+    { name: "Jira", icon: SiJira, color: "#0052CC" },
+    { name: "Bitbucket", icon: FaBitbucket, color: "#0052CC" },
   ],
   testing: [
     { name: "Jest", icon: SiJest, color: "#C21325" },
