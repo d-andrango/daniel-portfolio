@@ -38,7 +38,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer__bottom">
-          <p>&copy; 2025 Daniel Andrango. Todos los derechos reservados.</p>
+          <p>&copy; 2026 Daniel Andrango. Todos los derechos reservados.</p>
         </div>
       </Container>
     </footer>

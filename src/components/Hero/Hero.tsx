@@ -5,11 +5,7 @@ import "./Hero.scss"
 
 export default function Hero() {
   const handleDownloadCV = () => {
-    const link = document.createElement("a")
-    link.href = "https://www.d-andrango.com/cv/Daniel-Andrango-CV-2025.pdf"
-    link.download = "Daniel-Andrango-CV-2025.pdf"
-    link.target = "_blank"
-    link.click()
+    window.open("/daniel-andrango-cv-26-es-updated.pdf", "_blank")
   }
 
   const scrollToProjects = () => {
@@ -24,21 +20,19 @@ export default function Hero() {
       <Container>
         <div className="hero__content">
           <div className="hero__text">
-            <div className="hero__badge">
-              <span>👋 Disponible para nuevos proyectos</span>
-            </div>
+            
             <h1 className="hero__title">
               Hola, soy <span className="gradient-text">Daniel Andrango</span>
             </h1>
             <h2 className="hero__subtitle">Desarrollador Frontend</h2>
             <p className="hero__description">
-              Especializado en crear experiencias web excepcionales con React, TypeScript y tecnologías modernas.
+              Especializado en crear experiencias web excepcionales con Cells, Lit Element, React, TypeScript y tecnologías modernas.
             </p>
 
             <div className="hero__actions">
               <Button size="lg" onClick={handleDownloadCV}>
                 <DownloadIcon size={20} />
-                <span>Descargar CV</span>
+                <span>Ver CV</span>
               </Button>
               <Button variant="outline" size="lg" onClick={scrollToProjects}>
                 Ver Proyectos
@@ -49,7 +43,7 @@ export default function Hero() {
             <div className="hero__image-container">
               <img
                 src="./img/profile-photo.png"
-                alt="Alex Rodríguez - Frontend Developer"
+                alt="Daniel Andrango - Frontend Developer"
                 className="hero__profile-image"
               />
               <div className="hero__image-decoration"></div>
