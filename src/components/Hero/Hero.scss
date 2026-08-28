@@ -109,6 +109,10 @@
       linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.012)),
       rgba(6, 12, 17, 0.8);
     box-shadow: var(--shadow-xl);
+
+    @media (max-width: 768px) {
+      width: min(220px, 56vw);
+    }
   }
 
   &__profile-image {
