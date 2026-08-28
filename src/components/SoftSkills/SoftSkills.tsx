@@ -16,7 +16,7 @@ const softSkills = [
 export default function SoftSkills() {
   return (
     <section className="soft-skills">
-      <Container>
+      <Container className="section-gutter">
         <SectionHeader title="Soft Skills" />
         <div className="soft-skills__grid">
           {softSkills.map((skill, index) => (

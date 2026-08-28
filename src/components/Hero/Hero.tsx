@@ -17,12 +17,11 @@ export default function Hero() {
 
   return (
     <section className="hero" id="home">
-      <Container>
+      <Container className="section-gutter">
         <div className="hero__content">
           <div className="hero__text">
-            
             <h1 className="hero__title">
-              Hola, soy <span className="gradient-text">Daniel Andrango</span>
+              Hola, soy <span className="gradient-text hero__name">Daniel Andrango</span>
             </h1>
             <h2 className="hero__subtitle">Desarrollador Frontend</h2>
             <p className="hero__description">
@@ -38,7 +37,9 @@ export default function Hero() {
                 Ver Proyectos
               </Button>
             </div>
+
           </div>
+
           <div className="hero__image">
             <div className="hero__image-container">
               <img

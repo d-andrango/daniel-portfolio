@@ -1,15 +1,42 @@
 @import "../../styles/variables.scss";
 
 .footer {
-  padding: var(--spacing-2xl) 0 var(--spacing-xl);
-  background: var(--bg-primary);
-  border-top: 1px solid var(--border-primary);
+  position: relative;
+  margin-top: 3rem;
+  padding: 3rem 0 2rem;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012)),
+    radial-gradient(circle at 50% 0%, rgba(143, 216, 232, 0.12), transparent 42%),
+    rgba(3, 8, 12, 0.72);
+  border-top: 1px solid rgba(255, 255, 255, 0.11);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 -22px 70px rgba(0, 0, 0, 0.24);
   text-align: left;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: linear-gradient(180deg, #000, transparent 78%);
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
   &__content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: 1.25rem;
 
     @media (max-width: 768px) {
       flex-direction: column;
@@ -19,14 +46,25 @@
   }
 
   &__info {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem 1.25rem;
+    flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
     h3 {
       color: var(--text-primary);
-      margin-bottom: var(--spacing-xs);
-      font-size: 1.25rem;
+      margin-bottom: 0;
+      font-size: 0.95rem;
     }
 
     p {
       color: var(--text-muted);
+      font-size: 0.82rem;
     }
   }
 
@@ -39,9 +77,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    background: var(--bg-secondary);
+    width: 2.25rem;
+    height: 2.25rem;
+    background: rgba(255, 255, 255, 0.025);
     border: 1px solid var(--border-primary);
     border-radius: 50%;
     color: var(--text-secondary);
@@ -49,8 +87,8 @@
     transition: var(--transition-normal);
 
     &:hover {
-      background: var(--gradient-primary);
-      color: white;
+      background: rgba(143, 216, 232, 0.12);
+      color: var(--primary-blue-light);
       transform: translateY(-2px);
       box-shadow: var(--shadow-md);
     }
@@ -58,7 +96,7 @@
     &--whatsapp {
       &:hover {
         background: #25D366; // Color oficial de WhatsApp
-        color: white;
+        color: #9df3bf;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
       }
@@ -67,9 +105,9 @@
 
   &__bottom {
     text-align: center;
-    padding-top: var(--spacing-xl);
-    border-top: 1px solid var(--border-primary);
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-soft);
     color: var(--text-muted);
-    font-size: 0.875rem;
+    font-size: 0.78rem;
   }
 }

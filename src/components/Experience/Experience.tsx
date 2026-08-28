@@ -1,20 +1,53 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import type React from "react"
 import Container from "../../ui/Container/Container"
 import SectionHeader from "../../ui/SectionHeader/SectionHeader"
 import Card from "../../ui/Card/Card"
-import Badge from "../../ui/Badge/Badge"
 import { ChevronDownIcon, ChevronUpIcon } from "../Icons/index"
+import {
+  FaBitbucket,
+  FaDocker,
+  FaGithub,
+  FaGitlab,
+  FaJs,
+  FaNodeJs,
+  FaReact,
+} from "react-icons/fa"
+import {
+  SiExpress,
+  SiJira,
+  SiLit,
+  SiMocha,
+  SiMongodb,
+  SiSass,
+  SiTypescript,
+} from "react-icons/si"
+import { TbComponents, TbFlask } from "react-icons/tb"
 import "./Experience.scss"
 
-const experiences = [
+type ExperienceItem = {
+  title: string
+  company: string
+  period: string
+  location: string
+  description: string
+  logo: string
+  logoLabel?: string
+  technologies: string[]
+  achievements: string[]
+}
+
+const experiences: ExperienceItem[] = [
   {
     title: "Desarrollador FrontEnd",
-    company: "SEARCH IT",
+    company: "SEARCH IT / BBVA",
     period: "Feb 2026 - Presente",
     location: "Madrid, España",
+    logo: "/img/experience/bbva.jpg",
+    logoLabel: "SEARCH IT / BBVA",
     description:
       "Trabajando en un proyecto para Banco BBVA (vía Accenture). Desarrollo de soluciones front de alto rendimiento dentro del ecosistema Cells (BBVA), garantizando la escalabilidad y el cumplimiento de los estándares de arquitectura del banco.",
-    technologies: ["Cells", "JavaScript", "Lit Element","SCSS", "Bitbucket", "Jira",],
+    technologies: ["JavaScript", "SCSS", "Lit Element", "Cells", "Jira", "Bitbucket", "GitHub"],
     achievements: [
       "Desarrollo de Componentes, Páginas e Integración usando Cells y Lit Element: Implementación de flujos y páginas completas mediante la integración de componentes modulares, gestionando estados y comunicación eficiente entre elementos.",
       "Calidad de Código y Testing Robusto: Mantenimiento de código utilizando Mocha, Chai y Sinon. Implementación de pruebas de integración y unitarias.",
@@ -26,9 +59,10 @@ const experiences = [
     company: "Fesevar Innovaciones SLU",
     period: "Feb 2022 - Feb 2026",
     location: "Madrid, España",
+    logo: "/img/experience/fesevar.png",
     description:
       "Diseño y desarrollo de intranet de empresa con interfaces modulares y seguras. Creación de dashboards interactivos, sistemas de acceso y optimizar la gestión de proyectos mediante despliegues automatizados.",
-    technologies: ["React", "TypeScript", "Node.js", "Express.js", "MongoDB", "SCSS", "Docker", "Gitlab", "CI/CD",],
+    technologies: ["React", "TypeScript", "SCSS", "Node.js", "Express.js", "MongoDB", "Gitlab", "Docker"],
     achievements: [
       "Colaboración en el diseño de intranet de empresa, separación clara entre frontend y backend, siguiendo el patrón cliente-servidor REST. Desarrollo de endpoints seguros y eficientes.",
       "Colaboración en la definición del modelo de datos en MongoDB adaptado a los procesos de negocio de una constructora. Desarrollo de middleware en backend para validación de permisos.",
@@ -42,9 +76,10 @@ const experiences = [
     company: "MentorUp",
     period: "Ene 2024 - May 2025",
     location: "Madrid, España",
+    logo: "/img/experience/mentorup.png",
     description:
       "Desarrollador FrontEnd Freelance, creando componentes modulares con LitElement y TypeScript, implementando páginas clave y asegurando la calidad mediante pruebas unitarias y visuales en un entorno ágil.",
-    technologies: ["LitElement", "TypeScript", "WebComponents", "Mocha", "Chai", "Gitlab"],
+    technologies: ["TypeScript", "LitElement", "Gitlab", "Mocha", "Chai"],
     achievements: [
       "Desarrollo de componentes modulares como barras de progreso, perfil de usuario y tarjetas informativas con LitElement y TypeScript, reutilizados en landing pages y flujos de mentoría.",
       "Implementar páginas clave como pantallas de inicio, login y registro de usuarios, garantizando consistencia visual y responsividad.",
@@ -71,8 +106,113 @@ const experiences = [
   },*/
 ]
 
+function BbvaIcon({ size = 18 }: { size?: number }) {
+  return (
+    <span className="experience__bbva-icon" style={{ fontSize: `${Math.max(8, size * 0.5)}px` }}>
+      BBVA
+    </span>
+  )
+}
+
+const techIconMap: Record<string, { icon: React.ComponentType<{ size?: number }>; color: string }> = {
+  Cells: { icon: BbvaIcon, color: "#49A5E6" },
+  JavaScript: { icon: FaJs, color: "#F7DF1E" },
+  "Lit Element": { icon: SiLit, color: "#324FFF" },
+  LitElement: { icon: SiLit, color: "#324FFF" },
+  SCSS: { icon: SiSass, color: "#CC6699" },
+  Bitbucket: { icon: FaBitbucket, color: "#2684FF" },
+  Jira: { icon: SiJira, color: "#2684FF" },
+  React: { icon: FaReact, color: "#61DAFB" },
+  TypeScript: { icon: SiTypescript, color: "#3178C6" },
+  "Node.js": { icon: FaNodeJs, color: "#339933" },
+  "Express.js": { icon: SiExpress, color: "#F5F7F8" },
+  MongoDB: { icon: SiMongodb, color: "#47A248" },
+  Docker: { icon: FaDocker, color: "#2496ED" },
+  GitHub: { icon: FaGithub, color: "#F5F7F8" },
+  Gitlab: { icon: FaGitlab, color: "#FC6D26" },
+  "CI/CD": { icon: FaGitlab, color: "#FC6D26" },
+  WebComponents: { icon: TbComponents, color: "#C6F4FF" },
+  Mocha: { icon: SiMocha, color: "#8D6748" },
+  Chai: { icon: TbFlask, color: "#A30701" },
+}
+
+function CompanyLogo({
+  company,
+  logo,
+  label,
+}: {
+  company: string
+  logo: string
+  label?: string
+}) {
+  const [hasError, setHasError] = useState(false)
+  const fallback = label ?? company
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join("")
+
+  if (!hasError) {
+    return (
+      <img
+        src={logo}
+        alt={`Logo de ${company}`}
+        className="experience__company-logo-img"
+        onError={() => setHasError(true)}
+      />
+    )
+  }
+
+  return <span className="experience__company-logo-fallback">{fallback}</span>
+}
+
+function ExperienceTechButton({
+  name,
+  isActive,
+  onToggle,
+}: {
+  name: string
+  isActive: boolean
+  onToggle: () => void
+}) {
+  const tech = techIconMap[name] ?? { icon: TbComponents, color: "#C6CCD2" }
+  const Icon = tech.icon
+
+  return (
+    <button
+      type="button"
+      className={`experience__tech-pill ${isActive ? "experience__tech-pill--active" : ""}`}
+      style={{ color: tech.color }}
+      aria-label={name}
+      onClick={(event) => {
+        event.stopPropagation()
+        onToggle()
+      }}
+    >
+      <Icon size={18} />
+      <span className="experience__tech-tooltip">{name}</span>
+    </button>
+  )
+}
+
 export default function Experience() {
   const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set())
+  const [activeTech, setActiveTech] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (!activeTech) return
+
+    const clearActiveTech = () => setActiveTech(null)
+
+    document.addEventListener("click", clearActiveTech)
+    window.addEventListener("scroll", clearActiveTech, { passive: true })
+
+    return () => {
+      document.removeEventListener("click", clearActiveTech)
+      window.removeEventListener("scroll", clearActiveTech)
+    }
+  }, [activeTech])
 
   const toggleExpanded = (index: number) => {
     setExpandedItems((prev) => {
@@ -88,24 +228,31 @@ export default function Experience() {
 
   return (
     <section className="experience" id="experience">
-      <Container>
+      <Container className="section-gutter">
         <SectionHeader title="Experiencia Laboral" subtitle="Mi trayectoria profesional en el desarrollo frontend" />
         <div className="experience__timeline">
           {experiences.map((exp, index) => {
             const isExpanded = expandedItems.has(index)
+            const isCurrent = /presente|actual/i.test(exp.period)
             return (
               <div key={index} className="experience__timeline-item">
-                <div className="experience__timeline-marker"></div>
+                <div
+                  className={`experience__timeline-marker ${isCurrent ? "experience__timeline-marker--current" : ""}`}
+                  aria-hidden="true"
+                ></div>
                 <Card className="experience__card" hover>
                   <div className="card__header">
+                    <div className="experience__meta-row">
+                      <span className="experience__period">{exp.period}</span>
+                      <span className="experience__location">{exp.location}</span>
+                    </div>
                     <div className="experience__header">
-                      <div className="experience__info">
+                      <div className="experience__company-logo">
+                        <CompanyLogo company={exp.company} logo={exp.logo} label={exp.logoLabel} />
+                      </div>
+                      <div className="experience__heading">
                         <h3 className="experience__title">{exp.title}</h3>
                         <p className="experience__company">{exp.company}</p>
-                      </div>
-                      <div className="experience__meta">
-                        <span className="experience__period">{exp.period}</span>
-                        <span className="experience__location">{exp.location}</span>
                       </div>
                     </div>
                   </div>
@@ -113,9 +260,12 @@ export default function Experience() {
                     <p className="experience__description">{exp.description}</p>
                     <div className="experience__tech">
                       {exp.technologies.map((tech, techIndex) => (
-                        <Badge key={techIndex} variant="tech">
-                          {tech}
-                        </Badge>
+                        <ExperienceTechButton
+                          key={`${index}-${tech}`}
+                          name={tech}
+                          isActive={activeTech === `${index}-${techIndex}`}
+                          onToggle={() => setActiveTech((current) => current === `${index}-${techIndex}` ? null : `${index}-${techIndex}`)}
+                        />
                       ))}
                     </div>
 

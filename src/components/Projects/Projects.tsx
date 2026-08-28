@@ -1,20 +1,36 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
+import type React from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation, Pagination, EffectCoverflow } from "swiper/modules"
+import { Navigation } from "swiper/modules"
 import type { Swiper as SwiperType } from "swiper"
 import Container from "../../ui/Container/Container"
-import SectionHeader from "../../ui/SectionHeader/SectionHeader"
 import Card from "../../ui/Card/Card"
-import Badge from "../../ui/Badge/Badge"
-import { GithubIcon, ExternalLinkIcon } from "../Icons/index"
+import { ChevronLeftIcon, ChevronRightIcon } from "../Icons/index"
+import {
+  FaCss3Alt,
+  FaDocker,
+  FaGithub,
+  FaGitlab,
+  FaHtml5,
+  FaJs,
+  FaNodeJs,
+  FaReact,
+  FaWordpress,
+} from "react-icons/fa"
+import {
+  SiExpress,
+  SiMongodb,
+  SiMysql,
+  SiPhp,
+  SiSass,
+  SiTailwindcss,
+  SiTypescript,
+} from "react-icons/si"
+import { TbComponents } from "react-icons/tb"
 
 import "swiper/css"
 import "swiper/css/navigation"
-import "swiper/css/pagination"
-import "swiper/css/effect-coverflow"
 import "./Projects.scss"
-
-type ProjectStatus = "desarrollo" | "completado" | "mantenimiento" | "pausado"
 
 interface Project {
   title: string
@@ -23,136 +39,183 @@ interface Project {
   technologies: string[]
   github?: string 
   demo?: string  
-  status: ProjectStatus
 }
 
 const projects: Project[] = [
   {
     title: "Intranet Empresa",
     description: "Dashboard para empresa constructora, gestión intergal de obras, pagos, contratos, etc.",
-    image: "./img/fese-app.png",
-    technologies: ["React", "TypeScript", "Node.js", "MongoDB"],
+    image: "/img/projects/fese-app.png",
+    technologies: ["React", "TypeScript", "SCSS", "Node.js", "MongoDB"],
     demo: "https://grupo.fesevarinnovaciones.com/",
-    status: "mantenimiento",
   },
   {
-    title: "Gym App",
+    title: "Splym App",
     description: "Aplicación de gestión de rutinas de entrenamiento de gimnasio.",
-    image: "./img/gym-app.png",
+    image: "/img/projects/gym-app.png",
     technologies: ["React", "TypeScript", "Node.js", "MongoDB"],
-    status: "desarrollo",
+    demo: "https://splym.app/",
+  },
+   {
+    title: "Vibe 2u",
+    description: "Aplicación de gestión de planos de parejas.",
+    image: "/img/projects/vibe2u.png",
+    technologies: ["React", "TypeScript", "SCSS", "Node.js", "MongoDB"],
+    demo: "https://vibe2u.app/",
   },
   {
-    title: "Fut App",
-    description: "Aplicación para consulta de torneos de fútbol 7 organizados por el Ayuntamiento de Madrid.",
-    image: "./img/fut-app.png",
-    technologies: ["React", "TypeScript", "SCSS"],
-    status: "desarrollo",
+    title: "Mundialist App",
+    description: "Aplicación para porra entre amigos del Mundial 2026 de fútbol.",
+    image: "/img/projects/fut-app.png",
+    technologies: ["React", "TypeScript", "SCSS", "Node.js", "MongoDB"],
+    demo: "https://mundialist.app/",
   },
   {
     title: "Portfolio Personal",
     description: "Portfolio de programador frontend con información más relevante",
-    image: "./img/daniel-web.png",
+    image: "/img/projects/daniel-web.png",
     technologies: ["React", "TypeScript", "SCSS"],
     demo: "https://d-andrango.com/",
-    status: "completado",
   },
   {
-    title: "Web Empresa",
+    title: "Fesevar Innovaciones",
     description: "Página de presentación de empresa constructora.",
-    image: "./img/fese-web.png",
-    technologies: ["Wordpress", "HTML5", "CSS5", "PHP"],
+    image: "/img/projects/fese-web.png",
+    technologies: ["React", "TypeScript", "SCSS", "Node.js", "MongoDB"],
     demo: "https://fesevarinnovaciones.com/",
-    status: "completado",
   },
   {
-    title: "Tienda E-Commerce",
+    title: "Fesevar Online Store",
     description: "Tienda online de herramientas y vestuario laboral.",
-    image: "./img/fese-store.png",
+    image: "/img/projects/fese-store.png",
     technologies: ["HTML5", "CSS5", "Wordpress", "PHP", "MySQL"],
     demo: "https://fesevar-onlinestore.com/",
-    status: "completado",
   },
 ]
 
-const getStatusConfig = (status: ProjectStatus) => {
-  const configs = {
-    desarrollo: {
-      label: "En Desarrollo",
-      className: "projects__status--desarrollo",
-      color: "#ef4444",    
-    },
-    completado: {
-      label: "Completado",
-      className: "projects__status--completado",
-      color: "#22c55e", 
-    },
-    mantenimiento: {
-      label: "Mantenimiento",
-      className: "projects__status--mantenimiento",
-      color: "#f59e0b", 
-    },
-    pausado: {
-      label: "Pausado",
-      className: "projects__status--pausado",
-      color: "#6b7280",     
-    },
-  }
-  return configs[status]
+const projectTechIconMap: Record<string, { icon: React.ComponentType<{ size?: number }>; color: string }> = {
+  React: { icon: FaReact, color: "#61DAFB" },
+  TypeScript: { icon: SiTypescript, color: "#3178C6" },
+  SCSS: { icon: SiSass, color: "#CC6699" },
+  CSS5: { icon: FaCss3Alt, color: "#1572B6" },
+  CSS3: { icon: FaCss3Alt, color: "#1572B6" },
+  HTML5: { icon: FaHtml5, color: "#E34F26" },
+  JavaScript: { icon: FaJs, color: "#F7DF1E" },
+  "Node.js": { icon: FaNodeJs, color: "#339933" },
+  "Express.js": { icon: SiExpress, color: "#F5F7F8" },
+  MongoDB: { icon: SiMongodb, color: "#47A248" },
+  MySQL: { icon: SiMysql, color: "#4479A1" },
+  Wordpress: { icon: FaWordpress, color: "#21759B" },
+  WordPress: { icon: FaWordpress, color: "#21759B" },
+  PHP: { icon: SiPhp, color: "#777BB4" },
+  "Next.js": { icon: TbComponents, color: "#F5F7F8" },
+  "Tailwind CSS": { icon: SiTailwindcss, color: "#38BDF8" },
+  Docker: { icon: FaDocker, color: "#2496ED" },
+  GitHub: { icon: FaGithub, color: "#F5F7F8" },
+  Gitlab: { icon: FaGitlab, color: "#FC6D26" },
+  PWA: { icon: TbComponents, color: "#C6F4FF" },
+}
+
+function ProjectTechButton({
+  name,
+}: {
+  name: string
+}) {
+  const tech = projectTechIconMap[name] ?? { icon: TbComponents, color: "#C6CCD2" }
+  const Icon = tech.icon
+
+  return (
+    <span
+      className="projects__tech-pill"
+      style={{ color: tech.color }}
+      role="img"
+      aria-label={name}
+    >
+      <Icon size={17} />
+    </span>
+  )
 }
 
 export default function Projects() {
   const swiperRef = useRef<SwiperType | null>(null)
+  const [activeProjectSnap, setActiveProjectSnap] = useState(0)
+  const [projectSnapCount, setProjectSnapCount] = useState(projects.length)
 
-  const handleLinkClick = (url: string) => {
+  const syncProjectPagination = (swiper: SwiperType) => {
+    setActiveProjectSnap(swiper.snapIndex)
+    setProjectSnapCount(swiper.snapGrid.length || projects.length)
+  }
+
+  const openProjectUrl = (url?: string) => {
+    if (!url) return
     window.open(url, "_blank", "noopener,noreferrer")
+  }
+
+  const handleProjectKeyDown = (event: React.KeyboardEvent<HTMLDivElement>, url?: string) => {
+    if (!url || (event.key !== "Enter" && event.key !== " ")) return
+    event.preventDefault()
+    openProjectUrl(url)
   }
 
   return (
     <section className="projects" id="projects">
       <Container>
-        <SectionHeader title="Proyectos Destacados" subtitle="Algunos de mis trabajos más recientes" />
+        <div className="projects__header section-gutter">
+          <div className="projects__heading">
+            <h2 className="projects__section-title">Proyectos Destacados</h2>
+            <p className="projects__section-subtitle">Algunos de mis trabajos más recientes</p>
+          </div>
+          <div className="projects__nav-controls" aria-label="Controles del carrusel de proyectos">
+            <button
+              type="button"
+              className="projects__nav-btn"
+              onClick={() => swiperRef.current?.slidePrev()}
+              aria-label="Proyecto anterior"
+            >
+              <ChevronLeftIcon size={18} />
+            </button>
+            <button
+              type="button"
+              className="projects__nav-btn"
+              onClick={() => swiperRef.current?.slideNext()}
+              aria-label="Proyecto siguiente"
+            >
+              <ChevronRightIcon size={18} />
+            </button>
+          </div>
+        </div>
 
         <div className="projects__slider-container">
           <Swiper
             onSwiper={(swiper) => {
               swiperRef.current = swiper
+              syncProjectPagination(swiper)
             }}
-            modules={[Navigation, Pagination, EffectCoverflow]}
-            spaceBetween={30}
+            onSlideChange={syncProjectPagination}
+            onBreakpoint={syncProjectPagination}
+            onResize={syncProjectPagination}
+            modules={[Navigation]}
+            slidesPerView={1.28}
+            spaceBetween={12}
+            slidesPerGroup={1}
             centeredSlides={true}
             loop={false}
             grabCursor={true}
-            pagination={{
-              clickable: true,
-              bulletClass: "projects__bullet",
-              bulletActiveClass: "projects__bullet--active",
-              el: ".projects__pagination",
-            }}
             breakpoints={{
-              // Mobile
-              320: {
-                slidesPerView: 1.2,
-                spaceBetween: 0,
-                effect: "coverflow",
-                coverflowEffect: {
-                  rotate: 0,
-                  stretch: 0,
-                  depth: 100,
-                  modifier: 2,
-                  slideShadows: false,
-                },
+              220: {
+                slidesPerView: 1.28,
+                spaceBetween: 10,
+                effect: "slide",
+                centeredSlides: true,
               },
-              // Tablet
               768: {
-                slidesPerView: 2.5,
+                slidesPerView: 2.2,
                 spaceBetween: 25,
                 effect: "slide",
                 centeredSlides: false,
               },
-              // Desktop
               1024: {
-                slidesPerView: 3,
+                slidesPerView: 3.05,
                 spaceBetween: 30,
                 effect: "slide",
                 centeredSlides: false,
@@ -161,66 +224,50 @@ export default function Projects() {
             className="projects__swiper"
           >
             {projects.map((project, index) => {
-              const statusConfig = getStatusConfig(project.status)
-              const hasLinks = project.github || project.demo
+              const projectUrl = project.demo
 
               return (
                 <SwiperSlide key={index} className="projects__slide">
-                  <Card className="projects__card" hover>
+                  <div
+                    className={`projects__card-action${projectUrl ? " projects__card-action--clickable" : ""}`}
+                    onClick={() => openProjectUrl(projectUrl)}
+                    onKeyDown={(event) => handleProjectKeyDown(event, projectUrl)}
+                    role={projectUrl ? "link" : undefined}
+                    tabIndex={projectUrl ? 0 : undefined}
+                    aria-label={projectUrl ? `Abrir ${project.title}` : undefined}
+                  >
+                    <Card className="projects__card" hover={Boolean(projectUrl)}>
                     <div className="projects__image">
                       <img src={project.image || "/placeholder.svg"} alt={project.title} className="projects__img" />
-
-                      {/* Status Badge */}
-                      <div className={`projects__status ${statusConfig.className}`}>
-                        <div className="projects__status-dot"></div>
-                        <span className="projects__status-text">{statusConfig.label}</span>
-                      </div>
-
-                      {/* Action Buttons - Solo si hay enlaces */}
-                      {hasLinks && (
-                        <div className="projects__actions">
-                          {project.github && (
-                            <button
-                              className="projects__action-btn projects__action-btn--github"
-                              onClick={() => handleLinkClick(project.github!)}
-                              aria-label="Ver código en GitHub"
-                              title="Ver código"
-                            >
-                              <GithubIcon size={16} />
-                            </button>
-                          )}
-                          {project.demo && (
-                            <button
-                              className="projects__action-btn projects__action-btn--demo"
-                              onClick={() => handleLinkClick(project.demo!)}
-                              aria-label="Ver proyecto en vivo"
-                              title="Ver demo"
-                            >
-                              <ExternalLinkIcon size={16} />
-                            </button>
-                          )}
+                      <div className="card__content projects__content">
+                        <h3 className="projects__title">{project.title}</h3>
+                        <p className="projects__description">{project.description}</p>
+                        <div className="projects__tech">
+                          {project.technologies.map((tech) => (
+                            <ProjectTechButton key={`${index}-${tech}`} name={tech} />
+                          ))}
                         </div>
-                      )}
-                    </div>
-                    <div className="card__content projects__content">
-                      <h3 className="projects__title">{project.title}</h3>
-                      <p className="projects__description">{project.description}</p>
-                      <div className="projects__tech">
-                        {project.technologies.map((tech, techIndex) => (
-                          <Badge key={techIndex} variant="outline">
-                            {tech}
-                          </Badge>
-                        ))}
                       </div>
                     </div>
                   </Card>
+                  </div>
                 </SwiperSlide>
               )
             })}
           </Swiper>
 
-          {/* Custom Pagination */}
-          <div className="projects__pagination"></div>
+          <div className="projects__pagination" aria-label="Ir a proyecto">
+            {Array.from({ length: projectSnapCount }, (_, index) => (
+              <button
+                key={index}
+                type="button"
+                className={`projects__bullet${activeProjectSnap === index ? " projects__bullet--active" : ""}`}
+                onClick={() => swiperRef.current?.slideTo(index)}
+                aria-label={`Ir al grupo ${index + 1} de proyectos`}
+                aria-current={activeProjectSnap === index ? "true" : undefined}
+              />
+            ))}
+          </div>
         </div>
       </Container>
     </section>

@@ -1,19 +1,16 @@
 @import "../../styles/variables.scss";
 
 .card {
-  background: var(--bg-secondary);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.01)),
+    var(--surface-card);
   border: 1px solid var(--border-primary);
   border-radius: var(--radius-lg);
   overflow: hidden;
   transition: var(--transition-normal);
-
-  &--hover {
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--border-secondary);
-    }
-  }
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), var(--shadow-sm);
+  backdrop-filter: var(--blur-effect);
+  -webkit-backdrop-filter: var(--blur-effect);
 
   &__header {
     padding: var(--spacing-md) var(--spacing-md) 0;
@@ -29,7 +26,6 @@
   }
 
   &__content {
-    padding: var(--spacing-sm);
     padding-bottom: var(--spacing-md);
 
   }

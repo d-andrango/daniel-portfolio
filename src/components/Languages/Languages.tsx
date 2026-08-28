@@ -11,7 +11,7 @@ const languages = [
 export default function Languages() {
   return (
     <section className="languages">
-      <Container>
+      <Container className="section-gutter">
         <SectionHeader title="Idiomas" />
         <div className="languages__grid">
           {languages.map((lang, index) => (

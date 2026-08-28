@@ -1,21 +1,87 @@
 @import "../../styles/variables.scss";
 
 .projects {
-  background: var(--bg-secondary);
+  background: transparent;
   overflow: hidden;
-  padding: 5rem 0;
-  
+  padding: 3.5rem 0;
+
   @media (max-width: 768px) {
     padding: 5rem 0;
   }
 
+  &__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 1rem;
+    margin-bottom: 1.55rem;
+  }
+
+  &__section-title {
+    margin-bottom: 0.25rem;
+    color: var(--text-primary);
+    font-size: clamp(1.55rem, 2.2vw, 2rem);
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  &__section-subtitle {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+  }
+
+  &__nav-controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.55rem;
+  }
+
+  &__nav-btn {
+    display: grid;
+    place-items: center;
+    width: 2.45rem;
+    height: 2.45rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: var(--radius-full);
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.025)),
+      rgba(6, 12, 17, 0.46);
+    color: var(--text-secondary);
+    cursor: pointer;
+    box-shadow:
+      0 14px 34px rgba(0, 0, 0, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(18px) saturate(1.25);
+    -webkit-backdrop-filter: blur(18px) saturate(1.25);
+    transition: var(--transition-normal);
+
+    &:hover {
+      transform: translateY(-2px);
+      border-color: rgba(198, 244, 255, 0.34);
+      color: var(--primary-blue-light);
+    }
+  }
+
   &__slider-container {
     position: relative;
+    width: 100%;
+    max-width: var(--container-xl);
     margin-bottom: var(--spacing-2xl);
+    padding-right: 0;
+    padding-left: 0;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      max-width: none;
+      margin-right: 0;
+      margin-left: 0;
+    }
   }
 
   &__swiper {
-    padding: var(--spacing-lg) 0;
+    overflow: hidden;
+    padding: 0.35rem 0 0.75rem;
 
     @media (max-width: 768px) {
       padding: var(--spacing-md) 0;
@@ -35,9 +101,9 @@
     // Mobile - efecto coverflow personalizado
     @media (max-width: 768px) {
       &:not(.swiper-slide-active) {
-        opacity: 0.8;
-        transform: scale(0.9);
-        
+        opacity: 0.72;
+        transform: scale(0.94);
+
         .projects__title {
           color: var(--text-muted);
         }
@@ -53,28 +119,61 @@
         z-index: 2;
 
         .projects__card {
-          border-color: var(--primary-blue);
           box-shadow: var(--shadow-lg);
         }
       }
     }
   }
 
+  &__card-action {
+    height: 100%;
+    outline: none;
+
+    &--clickable {
+      cursor: pointer;
+
+      &:focus-visible {
+        .projects__card {
+          box-shadow:
+            0 0 0 3px rgba(198, 244, 255, 0.18),
+            var(--shadow-lg);
+        }
+      }
+    }
+  }
+
   &__card {
-    background: var(--bg-primary);
-    border: 1px solid var(--border-primary);
     overflow: hidden;
     height: 100%;
-    transition: var(--transition-normal);
   }
 
   &__image {
     position: relative;
     overflow: hidden;
-    height: 200px;
+    height: clamp(360px, 42vw, 520px);
+    min-height: 100%;
 
     @media (max-width: 768px) {
-      height: 180px;
+      height: min(65vh, 350px);
+    }
+
+    @media (max-width: 480px) {
+      height: min(65vh, 450px);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        180deg,
+        rgba(3, 8, 12, 0) 0%,
+        rgba(3, 8, 12, 0.18) 32%,
+        rgba(3, 8, 12, 0.76) 62%,
+        #03080c 100%
+      );
+      pointer-events: none;
     }
   }
 
@@ -82,232 +181,100 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top center;
     transition: var(--transition-normal);
-  }
-
-  // Status Badge - Píldora flotante
-  &__status {
-    position: absolute;
-    top: var(--spacing-md);
-    right: var(--spacing-md);
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--radius-full);
-    font-size: 0.75rem;
-    font-weight: 600;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: var(--shadow-md);
-    z-index: 3;
-    transition: var(--transition-normal);
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    &-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      animation: pulse 2s infinite;
-    }
-
-    &-text {
-      white-space: nowrap;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-    }
-
-    // Variantes de estado
-    &--desarrollo {
-      background: rgba(239, 68, 68, 0.9);
-      color: white;
-      border-color: rgba(239, 68, 68, 0.3);
-
-      .projects__status-dot {
-        background: #fca5a5;
-      }
-    }
-
-    &--completado {
-      background: rgba(34, 197, 94, 0.9);
-      color: white;
-      border-color: rgba(34, 197, 94, 0.3);
-
-      .projects__status-dot {
-        background: #86efac;
-      }
-    }
-
-    &--mantenimiento {
-      background: rgba(245, 158, 11, 0.9);
-      color: white;
-      border-color: rgba(245, 158, 11, 0.3);
-
-      .projects__status-dot {
-        background: #fcd34d;
-      }
-    }
-
-    &--pausado {
-      background: rgba(107, 114, 128, 0.9);
-      color: white;
-      border-color: rgba(107, 114, 128, 0.3);
-
-      .projects__status-dot {
-        background: #d1d5db;
-      }
-    }
-  }
-
-  // Action Buttons - Botones píldora modernos
-  &__actions {
-    position: absolute;
-    bottom: var(--spacing-md);
-    left: var(--spacing-md);
-    display: flex;
-    gap: var(--spacing-xs);
-    z-index: 3;
-    transform: translateY(10px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-    @media (max-width: 768px) {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  &__action-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: var(--radius-full);
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: var(--shadow-md);
-    position: relative;
-    overflow: hidden;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: inherit;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask-composite: xor;
-      -webkit-mask-composite: xor;
-    }
-
-    &:hover {
-      transform: translateY(-2px) scale(1.05);
-      box-shadow: var(--shadow-lg);
-    }
-
-    &:active {
-      transform: translateY(0) scale(0.98);
-    }
-
-    &--github {
-      background: rgba(36, 41, 47, 0.9);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-
-      &:hover {
-        background: rgba(36, 41, 47, 1);
-        box-shadow: 0 8px 25px rgba(36, 41, 47, 0.4);
-      }
-    }
-
-    &--demo {
-      background: rgba(14, 165, 233, 0.9);
-      color: white;
-      border: 1px solid rgba(14, 165, 233, 0.3);
-
-      &:hover {
-        background: rgba(14, 165, 233, 1);
-        box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);
-      }
-    }
-
-    @media (max-width: 768px) {
-      width: 2.25rem;
-      height: 2.25rem;
-    }
-  }
-
-  // Mostrar botones al hacer hover en la imagen
-  &__image:hover {
-    .projects__actions {
-      opacity: 1;
-      transform: translateY(0);
-    }
   }
 
   &__content {
-    padding: var(--spacing-xl);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 1.2rem;
     display: flex;
     flex-direction: column;
-    height: calc(100% - 200px);
+    align-items: flex-start;
+    min-height: 45%;
+    justify-content: flex-end;
+    text-align: left;
 
     @media (max-width: 768px) {
-      padding: var(--spacing-lg);
-      height: calc(100% - 180px);
+      padding: 0.75rem;
+      min-height: 58%;
     }
   }
 
   &__title {
     color: var(--text-primary);
     margin-bottom: var(--spacing-sm);
-    font-size: 1.25rem;
+    font-size: clamp(0.92rem, 1.15vw, 1.12rem);
     font-weight: 600;
     line-height: 1.3;
     transition: var(--transition-normal);
 
     @media (max-width: 768px) {
-      font-size: 1.1rem;
+      font-size: 0.9rem;
+      margin-bottom: 0.35rem;
     }
   }
 
   &__description {
     color: var(--text-secondary);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: 0.95rem;
     line-height: 1.6;
-    flex-grow: 1;
-    font-size: 0.95rem;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    font-size: 0.78rem;
     transition: var(--transition-normal);
 
     @media (max-width: 768px) {
-      font-size: 0.875rem;
-      line-height: 1.5;
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      font-size: 0.72rem;
+      line-height: 1.42;
+      margin-bottom: 0.65rem;
     }
   }
 
   &__tech {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-xs);
-    margin-top: auto;
+    gap: 0.48rem;
 
     @media (max-width: 768px) {
-      gap: 4px;
-      
-      .badge {
-        font-size: 0.7rem;
-        padding: 2px 8px;
+      gap: 0.28rem;
+    }
+  }
+
+  &__tech-pill {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 2.15rem;
+    height: 2.15rem;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.032);
+    transition: var(--transition-normal);
+
+    &:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-secondary);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    @media (max-width: 768px) {
+      width: 1.55rem;
+      height: 1.55rem;
+
+      svg {
+        width: 0.86rem;
+        height: 0.86rem;
       }
     }
   }
@@ -315,44 +282,40 @@
   &__pagination {
     display: flex;
     justify-content: center;
-    gap: var(--spacing-sm);
-    margin-top: var(--spacing-xl);
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.9rem;
   }
 
   &__bullet {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--border-primary);
+    appearance: none;
+    padding: 0;
+    width: 1.25rem;
+    height: 0.22rem;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.16);
     cursor: pointer;
     transition: var(--transition-normal);
     border: none;
     outline: none;
 
     &:hover {
-      background: var(--primary-blue-light);
-      transform: scale(1.2);
+      background: rgba(198, 244, 255, 0.5);
     }
 
     &--active {
-      background: var(--primary-blue);
-      transform: scale(1.3);
+      width: 3.2rem;
+      background: linear-gradient(90deg, var(--primary-blue-light), rgba(198, 244, 255, 0.32));
+      box-shadow: 0 0 18px rgba(143, 216, 232, 0.28);
     }
 
     @media (max-width: 768px) {
-      width: 10px;
-      height: 10px;
-    }
-  }
-}
+      width: 1rem;
 
-// Animación de pulso para el dot del status
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
+      &--active {
+        width: 2.55rem;
+      }
+    }
   }
 }
 
@@ -386,13 +349,5 @@
     .swiper-wrapper {
       transition-duration: 0ms !important;
     }
-  }
-
-  .projects__status-dot {
-    animation: none;
-  }
-
-  .projects__actions {
-    transition: none;
   }
 }

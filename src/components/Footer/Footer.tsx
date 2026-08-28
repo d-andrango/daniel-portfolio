@@ -6,7 +6,7 @@ import "./Footer.scss"
 export default function Footer() {
   return (
     <footer className="footer">
-      <Container>
+      <Container className="section-gutter">
         <div className="footer__content">
           <div className="footer__info">
             <h3>Daniel Andrango</h3>

@@ -36,7 +36,7 @@ export default function Header() {
   const handleContactClick = (type: "email" | "whatsapp") => {
     switch (type) {
       case "email":
-        window.open("mailto:daniel.@d-andrango.com", "_blank")
+        window.open("mailto:daniel@d-andrango.com", "_blank")
         break
       case "whatsapp":
         window.open("https://wa.link/oz69j3", "_blank")
@@ -79,7 +79,6 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Action Icons - Visible en desktop y mobile */}
         <div className="header__actions">
           <button
             className="header__action-btn header__action-btn--email"

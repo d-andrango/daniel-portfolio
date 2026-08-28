@@ -1,7 +1,7 @@
 @import "../../styles/variables.scss";
 
 .education {
-  padding: 6rem 0;
+  padding: 3.5rem 0;
   text-align: left;
 
   @media (max-width: 768px) {
@@ -9,27 +9,118 @@
   }
 
   &__grid {
-    padding: 0 16px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-xl);
-    max-width: 800px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    max-width: none;
     margin: 0 auto;
   }
 
   &__card {
-    background: var(--bg-primary);
-    border: 1px solid var(--border-primary);
+    &:nth-child(3) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  &__header {
+    display: grid;
+    grid-template-columns: 3.35rem minmax(0, 1fr);
+    align-items: start;
+    gap: 0.85rem;
+  }
+
+  &__logo {
+    display: grid;
+    place-items: center;
+    width: 3.35rem;
+    height: 3.35rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--radius-md);
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.025)),
+      rgba(6, 12, 17, 0.52);
+    box-shadow:
+      0 14px 34px rgba(0, 0, 0, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  &__logo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__logo-fallback {
+    color: var(--text-primary);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  &__heading {
+    min-width: 0;
+
+    h3 {
+      margin-bottom: 0.45rem;
+      color: var(--text-primary);
+      font-size: 1rem;
+      line-height: 1.35;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-width: 0;
   }
 
   &__institution {
-    color: var(--primary-blue);
+    min-width: 0;
+    color: var(--text-secondary);
     font-weight: 600;
-    margin-bottom: var(--spacing-xs);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
+  &__separator,
   &__period {
     color: var(--text-muted);
     font-size: 0.875rem;
+    flex-shrink: 0;
+  }
+
+  &__description {
+    padding-top: 1rem;
+  }
+
+  p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+  }
+
+  @media (max-width: 480px) {
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+
+    &__card {
+      &:nth-child(3) {
+        grid-column: auto;
+      }
+    }
+
+    &__header {
+      grid-template-columns: 3rem minmax(0, 1fr);
+      gap: 0.75rem;
+    }
+
+    &__logo {
+      width: 3rem;
+      height: 3rem;
+    }
   }
 }

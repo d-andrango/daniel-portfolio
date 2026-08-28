@@ -1,38 +1,29 @@
 @import "../../styles/variables.scss";
 
 .tech-stack {
-  padding: 16px;
+  padding: 3.5rem 0;
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: var(--spacing-xl);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
 
     @media (max-width: 768px) {
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: var(--spacing-lg);
+      grid-template-columns: 1fr;
     }
   }
 
   &__category {
+    padding: 0.35rem;
+
     &:hover {
-      border-color: var(--primary-blue);
-
-      &::before {
-        height: 6px;
-      }
-
-      .tech-stack__category-count {
-        background: var(--primary-blue);
-        color: white;
-        transform: scale(1.1);
-      }
+      border-color: var(--border-secondary);
     }
 
     &-title {
       color: var(--text-primary);
-      font-size: 1.25rem;
-      font-weight: 700;
+      font-size: 1rem;
+      font-weight: 650;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -44,13 +35,11 @@
 
   &__list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-    gap: var(--spacing-lg);
+    grid-template-columns: repeat(auto-fit, minmax(86px, 1fr));
+    gap: 0.65rem;
 
     @media (max-width: 768px) {
-      grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
-
-      gap: var(--spacing-sm);
+      grid-template-columns: repeat(auto-fit, minmax(58px, 1fr));
     }
   }
 
@@ -58,18 +47,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 0.55rem;
+    padding: 0.6rem 0.7rem;
     transition: var(--transition-normal);
     cursor: pointer;
     position: relative;
     overflow: hidden;
-
-    &:hover {
-      .tech-stack__name {
-        color: var(--text-primary);
-        font-weight: 600;
-      }
-    }
-
     >* {
       position: relative;
       z-index: 1;
@@ -80,14 +63,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 3rem;
-    height: 3rem;
+    width: 1.65rem;
+    height: 1.65rem;
+    flex-shrink: 0;
     transition: var(--transition-normal);
-    backdrop-filter: blur(10px);
+  }
+
+  &__logo {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: contain;
   }
 
   &__name {
-    font-size: 0.875rem;
+    font-size: 0.78rem;
     font-weight: 500;
     color: var(--text-secondary);
     text-align: center;
@@ -95,8 +85,7 @@
     line-height: 1.2;
 
     @media (max-width: 768px) {
-      line-height: 1;
-      font-size: 0.6rem;
+      font-size: 0.76rem;
 
     }
   }
@@ -120,36 +109,4 @@
 
 .tech-stack__item:nth-child(even) {
   animation-delay: 0.2s;
-}
-
-
-
-.tech-stack__item {
-
-  &:has(.tech-stack__name:contains("WordPress")) {
-    &:hover {
-      .tech-stack__icon {
-        background: rgba(33, 117, 155, 0.1);
-      }
-    }
-  }
-
-  &:has(.tech-stack__name:contains("Photoshop")),
-  &:has(.tech-stack__name:contains("Illustrator")) {
-    &:hover {
-      .tech-stack__icon {
-        background: rgba(255, 255, 255, 0.1);
-      }
-    }
-  }
-
-  &:has(.tech-stack__name:contains("Mocha")),
-  &:has(.tech-stack__name:contains("Chai")),
-  &:has(.tech-stack__name:contains("Sinon")) {
-    &:hover {
-      .tech-stack__icon {
-        background: rgba(139, 69, 19, 0.1);
-      }
-    }
-  }
 }
