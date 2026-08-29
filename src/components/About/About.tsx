@@ -16,7 +16,7 @@ export default function About() {
               Desarrollador Frontend con experiencia en React, Cells, Lit Element, JavaScript, TypeScript y diseño de interfaces web. Especializado en la creación de componentes reutilizables, testables y escalables. También cuento con experiencia práctica en entornos DevOps, automatización con GitLab CI/CD, despliegues con Docker y gestión de infraestructura ligera en Linux. Experiencia en entornos ágiles Scrum/Kanban.
             </p>
             <p>
-              Fuera del horario laboral, me apasiona seguir aprendiendo y explorando nuevas tecnologías. Dedico parte de mi tiempo libre al desarrollo de proyectos personales, como una aplicación de mis rutinas de gimnasio o una aplicación para la gestión de mi equipo de fútbol.
+              Fuera del horario laboral, me apasiona seguir aprendiendo y explorando nuevas tecnologías. Dedico parte de mi tiempo libre al desarrollo de proyectos personales, como una aplicación de mis rutinas de gimnasio o una aplicación para la gestión de porras de fútbol con amigos.
             </p>
           </div>
 
