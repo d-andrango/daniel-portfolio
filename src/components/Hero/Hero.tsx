@@ -39,18 +39,19 @@ export default function Hero() {
             </div>
 
           </div>
-
+ {/*}
           <div className="hero__image">
             <div className="hero__image-container">
-              <img
+             <img
                 src="./img/profile-photo.png"
                 alt="Daniel Andrango - Frontend Developer"
                 className="hero__profile-image"
               />
+           
               <div className="hero__image-decoration"></div>
               <div className="hero__image-glow"></div>
-            </div>
-          </div>
+            </div> 
+          </div>{*/}
         </div>
       </Container>
     </section>
