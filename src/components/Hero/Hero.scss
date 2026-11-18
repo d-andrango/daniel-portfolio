@@ -101,7 +101,7 @@
 
   &__image-container {
     position: relative;
-    width: min(320px, 72vw);
+    width: min(220px, 72vw);
     aspect-ratio: 1;
     border: 1px solid var(--border-primary);
     border-radius: 999px;
@@ -111,7 +111,7 @@
     box-shadow: var(--shadow-xl);
 
     @media (max-width: 768px) {
-      width: min(220px, 56vw);
+      width: min(120px, 56vw);
     }
   }
 

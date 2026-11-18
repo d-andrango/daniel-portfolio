@@ -42,6 +42,21 @@ interface Project {
 }
 
 const projects: Project[] = [
+    {
+    title: "Vibe 2u",
+    description: "Aplicación de gestión de eventos.",
+    image: "/img/projects/vibe2u-2.jpeg",
+    technologies: ["React", "TypeScript", "SCSS", "Node.js", "MongoDB"],
+    demo: "https://vibe2u.app/",
+  },
+   
+  {
+    title: "Mundialist App",
+    description: "Aplicación para porra entre amigos del Mundial 2026 de fútbol.",
+    image: "/img/projects/fut-app.png",
+    technologies: ["React", "TypeScript", "SCSS", "Node.js", "MongoDB"],
+    demo: "https://mundialist.app/",
+  },
   {
     title: "Intranet Empresa",
     description: "Dashboard para empresa constructora, gestión intergal de obras, pagos, contratos, etc.",
@@ -56,24 +71,11 @@ const projects: Project[] = [
     technologies: ["React", "TypeScript", "Node.js", "MongoDB"],
     demo: "https://splym.app/",
   },
-   {
-    title: "Vibe 2u",
-    description: "Aplicación de gestión de planos de parejas.",
-    image: "/img/projects/vibe2u.png",
-    technologies: ["React", "TypeScript", "SCSS", "Node.js", "MongoDB"],
-    demo: "https://vibe2u.app/",
-  },
-  {
-    title: "Mundialist App",
-    description: "Aplicación para porra entre amigos del Mundial 2026 de fútbol.",
-    image: "/img/projects/fut-app.png",
-    technologies: ["React", "TypeScript", "SCSS", "Node.js", "MongoDB"],
-    demo: "https://mundialist.app/",
-  },
+
   {
     title: "Portfolio Personal",
-    description: "Portfolio de programador frontend con información más relevante",
-    image: "/img/projects/daniel-web.png",
+    description: "Portfolio de programador frontend.",
+    image: "/img/projects/daniel-web-2.png",
     technologies: ["React", "TypeScript", "SCSS"],
     demo: "https://d-andrango.com/",
   },
